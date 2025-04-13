@@ -1,4 +1,4 @@
-########## Quantum Circuit Solver - Circuit_3_48q.qasm - by Jamie Kraus 10/25/2024 ##########
+########## Quantum Circuit Solver - Circuit_2_42q.qasm - by Jamie Kraus 10/25/2024 ##########
 
 # Importing necessary libraries
 import bluequbit
@@ -6,8 +6,8 @@ from qiskit import QuantumCircuit
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Initialize BlueQubit with API key
-bq = bluequbit.init("4kDE91xNSXezFZQyZc0w7w1C4owXRl1f")
+# Initialize BlueQubit with your API key
+bq = bluequbit.init("cPIcvrQSMRaZUWtzeT8LIw0nZmm6VNt3")
 
 # Function to load and run a sub-circuit
 def run_sub_circuit(qasm_content, start_qubit, num_qubits):
@@ -41,7 +41,7 @@ def run_sub_circuit(qasm_content, start_qubit, num_qubits):
     
     try:
         # Run the sub-circuit on BlueQubit using the GPU backend
-        result = bq.run(sub_circuit, device='mps.cpu', shots= 1000)  # Using GPU for handling larger circuits
+        result = bq.run(sub_circuit, device='mps.cpu', shots=1000)  # Using GPU for handling larger circuits
         counts = result.get_counts()
         print(f"Sub-circuit run completed successfully.")
         return counts
@@ -50,14 +50,14 @@ def run_sub_circuit(qasm_content, start_qubit, num_qubits):
         print(f"Failed to run the sub-circuit. Error: {e}")
         return {}
 
-# Load the circuit from the .qasm file 
-qasm_file_path = "P3__sharp_peak.qasm"  #For example "C:/Users/Jamie/QuantumCircuitSolver/circuit_3_48q.qasm"
+# Loading the circuit from the .qasm file
+qasm_file_path = "P3__sharp_peak.qasm"  #For example "C:/Users/Jamie/QuantumCircuitSolver/circuit_2_42q.qasm"
 with open(qasm_file_path, 'r') as f:
     qasm_content = f.read()
 
 # Define the number of qubits for sub-circuits based on backend limits
 sub_circuits_results = []
-qubits_per_sub_circuit = 11
+qubits_per_sub_circuit = 44
 total_qubits = 44
 
 # Run sub-circuits
